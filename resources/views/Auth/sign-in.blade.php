@@ -1,6 +1,6 @@
 @extends('App')
 
-@section('title','sign-in');
+@section('title','sign-in')
 
 @section('contents')
 <form action="/sign-in" method="post">

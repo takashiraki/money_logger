@@ -3,7 +3,7 @@
 @section('title', 'sign-in')
 
 @section('contents')
-    <form action="/password-reset-request" method="post">
+    <form action="/password-reset/apdate" method="post">
         @csrf
         <section class="vh-100" style="background-color: #508bfc;">
             <div class="h-100 container py-5">
@@ -15,7 +15,7 @@
                                 <p>パスワードを入力してください</p>
 
                                 <div class="form-outline mb-4">
-                                    <input name="password" type="email" id="typeEmailX-2"
+                                    <input name="password" type="password" id="typeEmailX-2"
                                         class="form-control form-control-lg">
                                     <label class="form-label" for="typeEmailX-2">Pssword</label>
                                 </div>
@@ -23,7 +23,6 @@
                                 <input type="hidden" name="user_id" value="{{ $user_id }}">
 
                                 <button class="btn btn-primary btn-lg btn-block" type="submit">パスワードをリセット</button>
-
 
                             </div>
                         </div>

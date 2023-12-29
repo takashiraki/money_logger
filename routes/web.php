@@ -23,20 +23,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sign-up', [SignUpController::class, 'index']);
+Route::middleware('guest')->group(function () {
+    Route::get('/sign-up', [SignUpController::class, 'index']);
 
-Route::post('/sign-up', [SignUpController::class, 'handle']);
+    Route::post('/sign-up', [SignUpController::class, 'handle']);
 
-Route::get('/sign-in', [SignInController::class, 'index']);
+    Route::get('/sign-in', [SignInController::class, 'index'])->name('login');
 
-Route::post('/sign-in', [SignInController::class, 'authenticate']);
+    Route::post('/sign-in', [SignInController::class, 'authenticate']);
 
-Route::get('/password-reset-request', [PasswordResetRequestController::class, 'index']);
+    Route::get('/password-reset-request', [PasswordResetRequestController::class, 'index']);
 
-Route::post('/password-reset-request', [PasswordResetRequestController::class, 'handle']);
+    Route::post('/password-reset-request', [PasswordResetRequestController::class, 'handle']);
 
-Route::get('/password-reset/{reset_id}/index', [PasswordResetController::class, 'index']);
+    Route::get('/password-reset/{reset_id}/index', [PasswordResetController::class, 'index']);
 
-Route::get('/home', function () {
-    return view('contents.home');
+    Route::post('/password-reset/apdate', [PasswordResetController::class, 'handle']);
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', function () {
+        return view('contents.home');
+    })->middleware('auth', 'verified')->name('home');
 });

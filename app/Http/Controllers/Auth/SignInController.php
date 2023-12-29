@@ -26,9 +26,7 @@ class SignInController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            // return redirect()->intended('home');
-            echo 'success!';
-            exit();
+            return redirect()->intended('home');
         }
 
         echo 'fail!';

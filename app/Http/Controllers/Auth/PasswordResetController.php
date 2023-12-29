@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\PasswordRestModel;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class PasswordResetController extends Controller
 {
@@ -32,5 +33,27 @@ class PasswordResetController extends Controller
         return view('Auth.password-reset', [
             'user_id' => $user_id,
         ]);
+    }
+
+    public function handle(Request $http_request)
+    {
+        $validate = $http_request->validate(
+            [
+                'user_id' => ['required', 'string', 'size:36'],
+                'password' => ['required', 'string', 'between:8,16'],
+            ]
+        );
+
+        $user = User::where('user_id', $validate['user_id'])->first();
+
+        $new_user = $user;
+
+        $new_user->password = $validate['password'];
+
+        $new_user->save();
+
+        return view('Auth.password-reset-complete');
+
+        dd($new_user);
     }
 }
