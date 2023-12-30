@@ -2,6 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\Auth\PasswordResetRequestController;
+use App\Http\Controllers\Auth\SignInController;
+use App\Http\Controllers\SignUpController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +23,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sign-up', function () {
-    return view('Auth.sign-up');
+Route::middleware('guest')->group(function () {
+    Route::get('/sign-up', [SignUpController::class, 'index']);
+
+    Route::post('/sign-up', [SignUpController::class, 'handle']);
+
+    Route::get('/sign-in', [SignInController::class, 'index'])->name('login');
+
+    Route::post('/sign-in', [SignInController::class, 'authenticate']);
+
+    Route::get('/password-reset-request', [PasswordResetRequestController::class, 'index']);
+
+    Route::post('/password-reset-request', [PasswordResetRequestController::class, 'handle']);
+
+    Route::get('/password-reset/{reset_id}/index', [PasswordResetController::class, 'index']);
+
+    Route::post('/password-reset/apdate', [PasswordResetController::class, 'handle']);
 });
 
-Route::get('/sign-in', function () {
-    return view(('Auth.sign-in'));
+Route::middleware('auth')->group(function () {
+    Route::get('/home', function () {
+        return view('contents.home');
+    })->middleware('auth', 'verified')->name('home');
 });
