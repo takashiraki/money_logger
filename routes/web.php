@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Auth\PasswordResetController;
 use App\Http\Controllers\Auth\PasswordResetRequestController;
 use App\Http\Controllers\Auth\SignInController;
+use App\Http\Controllers\Category\CreateCategoryController;
 use App\Http\Controllers\SignUpController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,4 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', function () {
         return view('contents.home');
     })->middleware('auth', 'verified')->name('home');
+
+    Route::get('/category/create', [CreateCategoryController::class, 'index']);
+
+    Route::post('/category/store', [CreateCategoryController::class, 'handle']);
 });
