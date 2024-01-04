@@ -62,6 +62,5 @@
 
         </div>
     </div>
-    <div class="col border-end h-100">One of three columns</div>
     <div class="col">One of three columns</div>
 </div>
