@@ -51,3 +51,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/category/store', [CreateCategoryController::class, 'handle']);
 });
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home', function () {
+        return view('money-records.home');
+    })->middleware('auth', 'verified')->name('home');
+});
