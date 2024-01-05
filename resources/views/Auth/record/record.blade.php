@@ -72,6 +72,16 @@
                 <!-- Password input -->
                 <div data-mdb-input-init="" class="form-outline mb-4">
                     <input name="category_name" type="text" id="form1Example2" class="form-control">
+                    <label class="form-label" for="form1Example2">date</label>
+                </div>
+
+                <div data-mdb-input-init="" class="form-outline mb-4">
+                    <input name="category_name" type="text" id="form1Example2" class="form-control">
+                    <label class="form-label" for="form1Example2">amount of money</label>
+                </div>
+
+                <div data-mdb-input-init="" class="form-outline mb-4">
+                    <input name="category_name" type="text" id="form1Example2" class="form-control">
                     <label class="form-label" for="form1Example2">category name</label>
                 </div>
 
@@ -79,7 +89,7 @@
 
 
                 <!-- Submit button -->
-                <button data-mdb-ripple-init="" type="submit" class="btn btn-primary btn-block">create</button>
+                <button data-mdb-ripple-init="" type="submit" class="btn btn-primary btn-block">record</button>
             </form>
         </div>
     </div>
