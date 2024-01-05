@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\record;
 
-use App\Http\Controllers\Controller as ControllersController;
+use App\Http\Controllers\Controller;
+use App\Models\Record;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use illuminate\Support\Str;
 
-class CreateRecordController extends ControllersController
+class CreateRecordController extends Controller
 {
     public function index()
     {
