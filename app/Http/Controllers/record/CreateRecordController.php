@@ -16,7 +16,7 @@ class CreateRecordController extends Controller
 {
     public function index()
     {
-        return view('record.money-records');
+        return view('Auth.record.record');
     }
 
     public function handle(Request $http_request)
