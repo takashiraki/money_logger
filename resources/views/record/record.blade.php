@@ -3,8 +3,6 @@
 @section('title', 'home')
 
 @section('contents')
-@endsection
-
 <div class="d-flex align-items-start bg-body-tertiary mb-3" style="height: 100vh;">
     <div class="col border-end h-100">
         <div class="d-flex flex-column bg-light flex-shrink-0 p-3" style="width: 280px;">
@@ -62,27 +60,34 @@
 
         </div>
     </div>
-    <div class="col border-end h-100">
+    <div class="col-9 p-3 border-end h-100">
         <div class="col border-end h-100">
-            <form method="POST" action="/category/store">
+            <form method="POST" action="/record/store">
                 @csrf
                 <!-- Email input -->
 
 
                 <!-- Password input -->
                 <div data-mdb-input-init="" class="form-outline mb-4">
-                    <input name="category_name" type="text" id="form1Example2" class="form-control">
+                    <input name="date" type="text" id="form1Example2" class="form-control">
                     <label class="form-label" for="form1Example2">date</label>
                 </div>
 
                 <div data-mdb-input-init="" class="form-outline mb-4">
-                    <input name="category_name" type="text" id="form1Example2" class="form-control">
+                    <input name="amount_of_money" type="text" id="form1Example2" class="form-control">
                     <label class="form-label" for="form1Example2">amount of money</label>
                 </div>
 
+                <select name="category_id" class="form-select" aria-label="Default select example">
+                    <option selected>Category name</option>
+                    @foreach ($data as $item)
+                        <option value="{{ $item->category_id }}">{{ $item->category_name }}</option>
+                    @endforeach
+                </select>
+
                 <div data-mdb-input-init="" class="form-outline mb-4">
-                    <input name="category_name" type="text" id="form1Example2" class="form-control">
-                    <label class="form-label" for="form1Example2">category name</label>
+                    <input name="name" type="text" id="form1Example2" class="form-control">
+                    <label class="form-label" for="form1Example2">name</label>
                 </div>
 
                 <!-- 2 column grid layout for inline styling -->
@@ -94,3 +99,4 @@
         </div>
     </div>
 </div>
+@endsection

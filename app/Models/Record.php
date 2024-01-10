@@ -46,9 +46,10 @@ class Record extends Model
      */
     protected $fillable = [
         'record_id',
-        'category_name',
-        'money_amount',
+        'category_id',
+        'amount_of_money',
         'date',
+        'name',
         'user_id',
     ];
 }
